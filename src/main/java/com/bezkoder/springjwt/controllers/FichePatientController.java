@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.bezkoder.springjwt.models.FichePatient;
-
+import com.bezkoder.springjwt.models.RendezVous;
 import com.bezkoder.springjwt.payload.response.MessageResponse;
 import com.bezkoder.springjwt.repository.FichePatientRepository;
 
@@ -29,12 +29,25 @@ public class FichePatientController {
 	@Autowired
 	private FichePatientRepository  FichePatientRepository ;
 
-	@RequestMapping(method = RequestMethod.GET , value="/FichePatient")
-	public List<FichePatient> getAllPatient() {
+	@RequestMapping(method = RequestMethod.GET , value="/FichePatient/{id}")
+	public List<RendezVous> getAllPatient(@PathVariable Integer id) {
 		List<FichePatient> dossiersinistre = new ArrayList<>();
-		FichePatientRepository.findAll()
+		List<FichePatient> f = new ArrayList<>();
+		List<RendezVous> r = new ArrayList<>();
+		FichePatientRepository.findAll() 
 		.forEach(dossiersinistre::add);
-		return dossiersinistre;
+		for (FichePatient FichePatient : dossiersinistre) {
+			System.out.println(FichePatient.getPatient().getId()) ;
+if (FichePatient.getPatient().getId() == id)
+	{
+	System.out.println("fffff"+FichePatient.getPatient().getId()) ;
+	FichePatient.getRendezVous().forEach(r::add);
+
+	f.add(FichePatient) ;
+	}
+	}
+		
+		return r;
 	}
 	@RequestMapping(method = RequestMethod.POST , value="/FichePatient")
 	public ResponseEntity<?> addPatient(@RequestBody FichePatient FichePatient) {
@@ -53,9 +66,10 @@ public class FichePatientController {
 	public void updatePatient(@PathVariable Integer id,@RequestBody  FichePatient FichePatient) {
 		FichePatientRepository.save(FichePatient) ;
 	}
-	@RequestMapping(method = RequestMethod.GET , value="/FichePatient/{id}")
+	@RequestMapping(method = RequestMethod.GET , value="/fichePatient/{id}")
 	public Optional<FichePatient> getPatient(@PathVariable Integer id) {
 		// TODO Auto-generated method stub
 		return FichePatientRepository.findById(id);
 	}
+	
 }

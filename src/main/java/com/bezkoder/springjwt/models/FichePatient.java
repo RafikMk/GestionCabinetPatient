@@ -7,6 +7,10 @@ import javax.persistence.IdClass;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.Id;
 
 @Entity
@@ -15,15 +19,13 @@ import javax.persistence.Id;
 public class FichePatient {
 	 @Id
 	    @ManyToOne
-	    @JoinColumn(name = "Doctor_id", referencedColumnName = "Id")
+	    @JoinColumn(name = "Doctor_id", referencedColumnName = "id")
 	    private Doctor Doctor;
-	    
 	    @Id
 	    @ManyToOne
-	    @JoinColumn(name = "Patient_id", referencedColumnName = "Id")
+	    @JoinColumn(name = "Patient_id", referencedColumnName = "id")
 	    private Patient Patient;
-	    
-	    private boolean Mahden;
+
 	    @OneToMany
 	    private List<RendezVous> RendezVous ;
 		public Doctor getDoctor() {
@@ -38,12 +40,7 @@ public class FichePatient {
 		public void setPatient(Patient patient) {
 			Patient = patient;
 		}
-		public boolean isMahden() {
-			return Mahden;
-		}
-		public void setMahden(boolean mahden) {
-			Mahden = mahden;
-		}
+
 		public List<RendezVous> getRendezVous() {
 			return RendezVous;
 		}
@@ -51,11 +48,10 @@ public class FichePatient {
 			RendezVous = rendezVous;
 		}
 		public FichePatient(com.bezkoder.springjwt.models.Doctor doctor, com.bezkoder.springjwt.models.Patient patient,
-				boolean mahden, List<com.bezkoder.springjwt.models.RendezVous> rendezVous) {
+			List<com.bezkoder.springjwt.models.RendezVous> rendezVous) {
 			super();
 			Doctor = doctor;
 			Patient = patient;
-			Mahden = mahden;
 			RendezVous = rendezVous;
 		}
 		public FichePatient() {

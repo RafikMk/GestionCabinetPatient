@@ -14,6 +14,7 @@ public class RendezVous {
 	private Integer Id ;
 	private double Poids ;
 	private double Taille ;
+	private String etat ;
 	private Date dateRendezVous ;
 	@OneToOne
 	private ordonnance ordonnance ;
@@ -60,5 +61,22 @@ public class RendezVous {
 		super();
 		// TODO Auto-generated constructor stub
 	}
+	public String getEtat() {
+		return etat;
+	}
+	public void setEtat(String etat) {
+		this.etat = etat;
+	}
+	public RendezVous(Integer id, double poids, double taille, String etat, Date dateRendezVous,
+			com.bezkoder.springjwt.models.ordonnance ordonnance) {
+		super();
+		Id = id;
+		Poids = poids;
+		Taille = taille;
+		this.etat = etat;
+		this.dateRendezVous = dateRendezVous;
+		this.ordonnance = ordonnance;
+	}
+	
 	
 }

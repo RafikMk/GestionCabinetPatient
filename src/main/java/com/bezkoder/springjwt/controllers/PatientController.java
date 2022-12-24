@@ -67,4 +67,6 @@ AuthController.registerUser2(SignupRequest,null,p) ;
 		// TODO Auto-generated method stub
 		return PatientRepository.findById(id);
 	}
+	
+
 }

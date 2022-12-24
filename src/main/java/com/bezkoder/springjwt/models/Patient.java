@@ -15,22 +15,13 @@ public class Patient {
 
 	@Id
 	  @GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer Id;
+	private Integer id;
 	private String username ;
 	private Integer latitude ;
 	private Integer longitude ;
 	private String email ;
 	private String tel ;
-	  @OneToMany(mappedBy = "Patient")
-	    private List<FichePatient> DoctorPatient;
-	
-	public Integer getId() {
-		return Id;
-	}
 
-	public void setId(Integer id) {
-		Id = id;
-	}
 
 	public String getUsername() {
 		return username;
@@ -72,24 +63,26 @@ public class Patient {
 		this.tel = tel;
 	}
 
-	public List<FichePatient> getDoctorPatient() {
-		return DoctorPatient;
+
+
+
+
+	public Integer getId() {
+		return id;
 	}
 
-	public void setDoctorPatient(List<FichePatient> doctorPatient) {
-		DoctorPatient = doctorPatient;
+	public void setId(Integer id) {
+		this.id = id;
 	}
 
-	public Patient(Integer id, String username, Integer latitude, Integer longitude, String email, String tel,
-			List<FichePatient> doctorPatient) {
+	public Patient(Integer id, String username, Integer latitude, Integer longitude, String email, String tel) {
 		super();
-		Id = id;
+		this.id = id;
 		this.username = username;
 		this.latitude = latitude;
 		this.longitude = longitude;
 		this.email = email;
 		this.tel = tel;
-		DoctorPatient = doctorPatient;
 	}
 
 	public Patient() {

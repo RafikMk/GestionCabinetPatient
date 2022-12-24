@@ -34,7 +34,7 @@ import com.bezkoder.springjwt.security.jwt.JwtUtils;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
-@RequestMapping("/rafik")
+@RequestMapping("/Api")
 public class DoctorController {
 	  @Autowired
 	  AuthenticationManager authenticationManager;
@@ -55,7 +55,7 @@ public class DoctorController {
 	  AuthController AuthController;
 	@Autowired
 	private DoctorRepository  DoctorRepository ;
-	@RequestMapping(method = RequestMethod.GET , value="/Doctor")
+	@RequestMapping(method = RequestMethod.GET , value="/Doctors")
 	public List<Doctor> getAllDoctor() {
 		List<Doctor> dossiersinistre = new ArrayList<>();
 		DoctorRepository.findAll()

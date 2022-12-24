@@ -9,8 +9,9 @@ import javax.persistence.Embeddable;
 
 public class DoctorPatientId implements Serializable {
     
-    private int Doctor;
     private int Patient;
+    private int Doctor;
+
 	public int getDoctor() {
 		return Doctor;
 	}

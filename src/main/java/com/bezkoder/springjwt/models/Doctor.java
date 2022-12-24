@@ -8,21 +8,25 @@ import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.Id;
 @Entity
 public class Doctor {
 
+
 	@Id
-	@GeneratedValue
-	private Long id;
+	  @GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Integer id;
 	private Integer cin;
 	private String username ;
-	  @OneToMany(mappedBy = "Doctor")
-	    private List<FichePatient> DoctorPatient;
+
 	  @OneToOne
 	  private Specialite Specialite ;
 private Integer latitude ;
@@ -40,7 +44,7 @@ private List<String> Diplomes ;
 @ElementCollection(targetClass=String.class)
 private List<String>  Experience ;
 private Time Horaire ;
-public Long getId() {
+public Integer getId() {
 	return id;
 }
 public void setId(Long id) {
@@ -58,12 +62,7 @@ public String getUsername() {
 public void setUsername(String username) {
 	this.username = username;
 }
-public List<FichePatient> getDoctorPatient() {
-	return DoctorPatient;
-}
-public void setDoctorPatient(List<FichePatient> doctorPatient) {
-	DoctorPatient = doctorPatient;
-}
+
 public Specialite getSpecialite() {
 	return Specialite;
 }
@@ -122,7 +121,7 @@ public Doctor() {
 	super();
 	// TODO Auto-generated constructor stub
 }
-public Doctor(Long id, Integer cin, String username, List<FichePatient> doctorPatient,
+public Doctor(Long id, Integer cin, String username,
 		com.bezkoder.springjwt.models.Specialite specialite, Integer latitude, Integer longitude, String email,
 		String tel, @NotBlank @Size(max = 120) String password, List<String> diplomes, List<String> experience,
 		Time horaire) {
@@ -130,7 +129,6 @@ public Doctor(Long id, Integer cin, String username, List<FichePatient> doctorPa
 	id = id;
 	this.cin = cin;
 	this.username = username;
-	DoctorPatient = doctorPatient;
 	Specialite = specialite;
 	this.latitude = latitude;
 	this.longitude = longitude;

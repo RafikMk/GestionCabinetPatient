@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.bezkoder.springjwt.models.Patient;
 import com.bezkoder.springjwt.models.RendezVous;
 import com.bezkoder.springjwt.models.RendezVous;
 import com.bezkoder.springjwt.models.RendezVous;
@@ -61,4 +62,5 @@ public class RendezVousController {
 		// TODO Auto-generated method stub
 		return RendezVousRepository.findById(id);
 	}
+
 }
